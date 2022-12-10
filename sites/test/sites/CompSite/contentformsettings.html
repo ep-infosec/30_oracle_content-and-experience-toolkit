@@ -1,0 +1,122 @@
+<!--
+Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- only allow embedding of this iFrame in SCS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Content Form</title>
+
+    <!-- include sample apps styling -->
+    <link href="/_sitescloud/renderer/app/sdk/css/app-styles.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/_sitescloud/renderer/app/apps/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/_sitescloud/renderer/app/apps/js/knockout.min.js"></script>
+    <script type="text/javascript" src="/_sitescloud/renderer/mustache.min.js"></script>
+
+    <!-- include the Sites SDK -->
+    <script type="text/javascript" src="/_sitescloud/renderer/app/sdk/js/sites.min.js"></script>
+</head>
+
+<body data-bind="visible: true" style="display:none; margin:0px; padding:0px;background:transparent;background-image:none;">
+    <div class="scs-component-settings">
+		
+		<div>
+			<label id="opt" class="settings-label">Drawer size</label>
+		</div>
+		<div class="scs-panelInput">
+			<ul id="contenttypelist" data-bind="foreach: drawerSizes">
+			<div class="optionspanel">
+				<p class="settings-label">
+					<input type="checkbox" id="size" data-bind="checked: selected, click: $parent.changeSize" class="optioninput" />
+					<label id="sizelabel" for="size"><span data-bind="text: name"></span></label>
+				</p>
+			</div>
+			</ul>
+		</div>
+
+		<div class="fieldeditorbutton">
+			<button id="fieldeditorsavebutton" class="save-button" data-bind=" click: saveChanges">Save to appinfo.json</button>
+		</div>
+    </div>
+
+    <script type="text/javascript">
+        /* global ko, console */
+
+        // define the viewModel object
+        var SettingsViewModel = function () {
+            'use strict';
+            var self = this;
+            self.initialized = ko.observable(false);
+
+			parent.document.getElementById('settingsTitle2').innerText = 'Form Properties';
+
+			var compName = '_devcs_component_contentform_name';
+			var compDrawerSize = '_devcs_component_contentform_drawersize';
+
+			self.drawerSizes = ko.observableArray([]);
+			var sizes = ['Default', 'Full', 'Half'];
+			var buf = [];
+			sizes.forEach(function (size) {
+				buf.push({
+					name: size,
+					selected: size.toLowerCase() === compDrawerSize
+				});
+			});
+			self.drawerSizes(buf);
+
+			self.initialized(true);
+
+			self.changeSize = function(event) {
+				var selectedSize = event && event.name;
+				if (selectedSize) {
+					buf = [];
+					sizes.forEach(function (size) {
+						buf.push({
+							name: size,
+							selected: size.toLowerCase() === selectedSize.toLowerCase()
+						});
+					});
+				self.drawerSizes(buf);
+				}
+       			return true;
+			};
+			 
+			self.saveChanges = function (event) {
+				var drawersize;
+				for(var i = 0; i < self.drawerSizes().length; i++) {
+					if (self.drawerSizes()[i].selected) {
+						drawersize = self.drawerSizes()[i].name.toLowerCase();
+					}
+				}
+
+				var url = '/updatecontentform?name=' + compName + '&drawerSize=' + drawersize;
+				console.log(url);
+				$.ajax({
+                	'type': 'POST',
+               	 	async: false,
+                	'url': url,
+                	'success': function (data) {
+						console.log('Changes saved successfully');
+                	},
+                	'error': function (xhr, status, err) {
+                    	console.log('status=' + status + ' err=' + err);
+               	 	}
+            	});
+			};
+
+            self.save = ko.computed(function () {
+
+                // console.log('Save changes....');
+
+            }, self);
+        };
+        ko.applyBindings(new SettingsViewModel());
+    </script>
+</body>
+
+</html>

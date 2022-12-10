@@ -1,0 +1,646 @@
+<!--
+Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		.rendering .scs-app-iframe-wrapper {
+			height: 600px !important;
+		}
+		.devcs_container {
+			width: 100%;
+			height: 20px;
+		}
+		.devcs_column {
+			float: left;
+			width: 30%;
+		}
+		.devcs_clickable {
+			cursor: pointer !important;
+		}
+	</style>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1">
+	<!-- This preloads the require/renderer files to be cached by the browser -->
+	<link rel=”preload” as="script" href="/_sitescloud/renderer/require.js">
+	<link rel=”preload” as="script" href="/_sitescloud/renderer/app/apps/js/knockout.min.js">
+	<link rel=”preload” as="script" href="[!--$SCS_RENDERER_PATH--]/renderer.js">
+	<!-- This contains the main script for configuring JET within the page -->
+	<script type="text/javascript" src="/_themes/[!--$SCS_THEME_NAME--]/assets/js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="_scs_theme_root_/assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="_scs_theme_root_/designs/_scs_design_name_/design.css">
+	<link href="/_sitescloud/renderer/app/sdk/css/app-styles.css" rel="stylesheet">
+	<link href="/public/css/styles.css" rel="stylesheet">
+	<!--$SCS_RENDER_INFO-->
+	<!--$SCS_SITE_HEADER-->
+	<!--$SCS_PAGE_HEADER-->
+</head>
+
+<body>
+	<div style="background:#ededed;">
+		<div class="branding">
+			<div class="brand">
+				<div class="nav">
+					<!-- <button type="button" id="nav-btn" class="menu secondary short osn-clickable" aria-label="Navigation menu" title="Navigation menu"> <span class="icon"></span> </button> -->
+				</div>
+				<a href="/public">
+					<img id="logo" data-bind="click: mainPage" class="brand-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAAARCAMAAAAxDRTrAAAApVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABU/knhAAAANnRSTlMAzCJq/RDdtKWH+ebvBp9xUdGYd2YbA/JZPjct4djISyUT9urCvZKDMY1DCwKqfl5GGLhjHa4JOWDOAAACmElEQVRIx4WV2XqCMBBGg+JSkEWoiCLiDnW3y//+j9YBIkmT+nFuJBMNZ5LJyEqc2F0aDfvAj6qwb8gsf+Izk7huF748PmfB3hD4LDeMLtNY5QPpXQGb5Ncj42QLKKQzRnShsHyIBX0Am5UYF2PIjB02BN5UjZ5rQcIqWDc8PHU9ExpW/J8IjKhZ0QaxZ00yFmTMOftPZJLiDx/0Ei/0eGrkMXqbrTqc1fGwIZN5JbLvNMw/TOCLcQ7AlMY3PkzKnwT3ZpFv9p+IYwDYxUmzpkNuoTerJk82MJ4o59in2LkUGcjhg9iCOUl0XWC7rsc7wE6U9HWREDA99oIuMJqowcQCMk1kBvTrp8gAluf1CAj4THkYbSKRXR7GKz6BXI+6gKuJZEDKywowiyoJc8b36oe1ipDupvdShCznetQHDFXE2QPD6ul7Chz4xqQOPdDMrV3kHbD6f/iMxKwJfOsic2BRixTvnOsYQF1XP4Dde5ZKSJ80dWwXCaFgyj/aAokukgHjWsS5QOA2LSRmFQGw6VS1GreK6O3AlWdpDU8X+QAu/GjOB3Cs/FzdswXwyb+33tJz5eO2i9yB6aMn4Sj7ZWsVNJkCt6ZGQhMw3fx90khuVoNRjVXtjk+Wq1aR01QkrbOm2cFJiS2BhSOK9WbR+HmABWldqwvOoUSiVGlGughPwcrkgHZyabwWgcfXAjB9JkTYnWxHVFnSTXmDIGB3k3y6kxaRXrlwUEQvTALoUM6yCCtswPp6eh+VRKiZeXohDqHQPyVbyKhV4U2hsOXvFH2kk4ISrKtnyGSicfVf69uQod7vQuFOHWgHCe2uPfKlWMa0dyF5ChFRN7iUl3n0YH+Y1c3k5O1sE5yyvyV9yHD/7NLfgCP3y1/ilaUbUwNDfAAAAABJRU5ErkJggg=="
+					    alt="undefined logo">
+					<span id="brandText">Content Management</span>
+				</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="banner">
+		<div>
+			<!-- <a href="/"><img data-bind="click: mainPage" src="/public/images/CECS_w_72.png" /></a> -->
+			<div id="title" class="text-ellip">_devcs_component_name</div>
+		</div>
+		<!-- <a class="unit text-ellip" href="/components">Components List</a> -->
+	</div>
+	<!-- breadcrum -->
+	<div class="breadcrumb">
+		<div>
+			<a href="/public">Developer</a>&nbsp;&gt;&nbsp;
+			<a href="/public/components.html">Components</a>&nbsp;&gt;&nbsp;_devcs_component_name
+		</div>
+	</div>
+	<div class="component-option">
+		<div class="component-local-option">
+			<div class="themedesign">
+				<span>Templates</span>
+				_devcs_local_templates
+			</div>
+			
+			_devcs_local_content
+
+			<div class="themedesign">
+				<span>Theme Design</span>
+				_devcs_theme_designs
+			</div>
+
+			<div class="class="themedesign"">
+				<span>Theme Resources</span>
+				_devcs_theme_resources
+			</div>
+		</div>
+		<div>
+			_devcs_server_content
+		</div>
+	</div>
+	<table border="1" width="100%">
+		<tr>
+			<td valign="top" style="padding:10px; background-color:white;">
+				<button id="toggleSettings" title="" value="" onclick="showHideSettings(this)"></button>
+				<div id="settingsMain" style="box-shadow: rgba(0, 0, 0, 0.75) 0px 0px 10px 0px;">
+					<div class="oj-dialog-header" style="background-color: rgb(51, 51, 51); border:0;">
+						
+						<div class="devcs_container">
+							<div class="oj-dialog-title devcs_column" id="settingsTitle" onclick="clickSettings()" style="color: rgb(221, 221, 221);">_devcs_component_settings_title</div>
+							_devcs_contentlayout_settings_title_div
+						</div>
+					</div>
+					<div id="settingsPane" style="background-color: rgb(62, 64, 66); padding: 4px 4px 4px 4px;">
+						<div style="max-height: 600px;">
+							<iframe id="settings" src="_devcs_component_setting_url" frameBorder="0" class="scs-component-settings" style="display:block;width:500px;height:600px;padding:10px;max-height:600px;"></iframe>
+						</div>
+					</div>
+				</div>
+			</td>
+			<!-- rendering -->
+			<td valign="top">
+				<div class="rendering">
+					<div id="slot-content" class="scs-slot scs-responsive"></div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<!--
+<script src="_scs_theme_root_/assets/js/topnav.js"></script>
+-->
+	<script type="text/javascript">
+		var getPropertyEvent = 'scsMockGetProperty',
+			setPropertyEvent = 'scsMockSetProperty',
+			subscriptions = {},
+			MESSAGE_TYPES = {
+				TRIGGER_ACTIONS: 'TRIGGER_ACTIONS',
+				EXECUTE_ACTION: 'EXECUTE_ACTION',
+				SETTINGS_UPDATED: 'SETTINGS_UPDATED',
+				COPY_CUSTOM_DATA: 'COPY_CUSTOM_DATA',
+				PASTE_CUSTOM_DATA: 'PASTE_CUSTOM_DATA'
+			},
+			properties = {
+				AssetsURL: '../../components/_devcs_component_name/assets',
+				componentLayout: 'left',
+				customSettingsData: _devcs_component_custom_settings,
+				cloudService: _devcs_component_cloud_service
+			};
+
+		var fieldEditorType = '_devcs_component_fieldeditor_type';
+
+		// mock the Sites SDK messages
+		var receiveMessage = function (event) {
+			var compType = '_devcs_component_type';
+
+			//
+			// Save the current content item before any process
+			//
+			if (window.sessionStorage['currentContentItem']) {
+				var item = JSON.parse(window.sessionStorage['currentContentItem']);
+				var types = window.sessionStorage['currentContentTypes'];
+				var url = '/setcontentlayoutitem?id=' + item.id + '&type=' + item.type +
+					'&name=' + item.name + '&template=' + item.template +
+					'&isRemote=' + item.isRemote + '&types=' + types;
+
+				var xhttp = new XMLHttpRequest();
+				xhttp.open("POST", url, false);
+				xhttp.send();
+				console.log('set content item ' + item.name);
+			}
+
+			if (fieldEditorType && window.origin === event.origin) {
+				var data = event.data;
+				var value = data.type === 'ready' ? (fieldEditorType === 'map' ? "-73.968285,40.785091" : '') : 
+					(data.payload.value || (data.payload.field && data.payload.field.value));
+				console.log('field editor event: ' + data.type + ', payload: ' + JSON.stringify(data.payload));
+				var field = {name: "value", dataType: "text", value: value, defaultValue: undefined};
+				var field2 = {name: "value2", dataType: "text", value: null, defaultValue: undefined};
+				var params = {
+            		locale: 'en',
+					fields: [field, field2],
+            		field: field,
+           			editor: {
+              			settings: {},
+              			autoresize: false,
+             			parameters:  {}
+           			}
+				};
+          		var msg = {
+            		type: 'init',
+           			payload: params
+				};
+				if (data.type === 'ready') {
+					var editFrame = document.getElementById('editFrame');
+					var editWindow = editFrame && editFrame.contentWindow;
+					if (editWindow) {
+						editWindow.postMessage(msg, window.origin); 
+						// console.log(' post ' + msg);
+					} else {
+						console.log('ERROR: editFrame not found');
+					}
+					
+				} else if (data.type === 'init' || data.type === 'edit') {
+					/*
+					var inputs = document.getElementsByClassName('editor-value-input');
+					var editorValueInput = inputs && inputs.length > 0 ? inputs[0] : undefined;
+					if (editorValueInput && data.payload) {
+						editorValueInput.value = data.payload.value || (data.payload.field && data.payload.field.value);
+						// console.log('field editor set value: ' + data.payload.value);
+					}
+					*/
+					var viewFrame = document.getElementById('viewFrame');
+					var viewWindow = viewFrame && viewFrame.contentWindow;
+					if (viewWindow) {
+						viewWindow.postMessage(msg, window.origin); 
+						// console.log(' view post ' + JSON.stringify(msg, null, 2));
+					} else {
+						console.log('ERROR: viewFrame not found');
+					}
+				}
+
+			} else if (compType === 'contentform' && window.origin === event.origin) {
+				var data = event.data;
+				// console.log('content form event: ' + data.type);
+				
+				var contentTypeData = {
+						name: 'type1',
+						slug: 'slug1'
+					};
+				var contentItemData = {
+						id: 'id1',
+						name: '',
+						fieldData: []
+					}
+				
+				if (data.type === 'formReady') {
+					
+					if (window.sessionStorage['currentContentItem']) {
+						var item = JSON.parse(window.sessionStorage['currentContentItem']);
+						
+						if (item && item.itemjson && item.itemjson.id && item.typejson && item.typejson.id) {
+							console.log('Render content form with item: ' + item.name);
+							contentItemData = item.itemjson;
+							contentItemData.isNew = false;
+
+							var itemFields = item.itemjson.fields;
+							var fields = item.typejson.fields || [];
+							var fieldData = [];
+    						fields.forEach(function (field) {
+      							var data = {
+       								definition: field,
+        							value: itemFields[field.name]
+     							}
+      							fieldData.push(data);
+    						});
+							contentItemData.fieldData = fieldData;
+							// console.log(contentItemData);
+						
+							var typeData = item.typejson;
+							// console.log(typeData);
+							
+							contentTypeData = {
+      							name: typeData.name,
+								typeCategory: typeData.typeCategory,
+      							description: item.typejson.description,
+      							groups: typeData.properties.groups || [],
+      							slug: (typeData.properties.caas && typeData.properties.caas.slug ? typeData.properties.caas.slug : '')
+	};
+						}
+					} else {
+						// no selected item
+						contentItemData.isNew = true;
+						if (window.sessionStorage['currentContentType']) {
+							var currentType = JSON.parse(sessionStorage['currentContentType']);
+							// console.log(currentType);
+							var fields = currentType.fields || [];
+							var fieldData = [];
+    						fields.forEach(function (field) {
+      							var data = {
+       								definition: field,
+        							value: ''
+     							}
+      							fieldData.push(data);
+    						});
+							contentItemData.fieldData = fieldData;
+							contentTypeData = {
+      							name: currentType.name,
+								typeCategory: currentType.typeCategory,
+      							description: currentType.description,
+      							groups: currentType.properties.groups || [],
+      							slug: (currentType.properties.caas && currentType.properties.caas.slug ? currentType.properties.caas.slug : '')
+	};
+						}
+
+					}
+				
+				
+					var formOptions =  {
+  						placement: "drawer",
+						supportsRequiredValidation: true,
+						supportsSetDescription: true,
+						supportsSetLanguage: true,
+						supportsSetMetaData: true,
+						supportsSetName: true,
+						supportsSetSlug: true,
+						supportsSetTranslatable: false
+					};
+					var params = {
+      					locale: 'en-us',
+      					contentTypeData: contentTypeData,
+      					contentItemData: contentItemData,
+					  	formOptions: formOptions
+					};
+					var msg = {
+            			type: 'init',
+           				payload: params
+					};
+
+					var editFrame = document.getElementById('editFrame');
+					var editWindow = editFrame && editFrame.contentWindow;
+					if (editWindow) {
+						editWindow.postMessage(msg, window.origin); 
+					}
+				
+				} // formReady
+
+			} else if (compType === 'translationeditor' && window.origin === event.origin) { 
+				var data = event.data;
+				// console.log('translationeditor event: ' + data.type);
+
+				var editFrame = document.getElementById('editFrame');
+				if (!data.type && editFrame) {
+					// reload iframe
+					editFrame.src += '';
+				}
+
+				if (data.type === 'formReady') {
+					if (window.sessionStorage['currentTranslationJob']) {
+						var job = JSON.parse(window.sessionStorage['currentTranslationJob']);
+						// console.log(job.job);
+						var msg = {
+            				type: 'init',
+           					payload: job.job
+						};
+						var editWindow = editFrame && editFrame.contentWindow;
+						if (editWindow) {
+							editWindow.postMessage(msg, window.origin); 
+						}
+					}
+				}
+
+			} else {
+				//
+				// All other components
+				//
+			try {
+
+				var data = JSON.parse(event.data);
+
+				// Mock the getProperty Event
+				if (data && data.eventName === getPropertyEvent) {
+					console.log('Sites received GET event: ' + event.data);
+
+					var getPropertyData = {
+						eventName: 'scsMockGetPropertyResponse',
+						eventPayload: {
+							propertyName: data.eventPayload.propertyName,
+							propertyValue: properties[data.eventPayload.propertyName] || ''
+						}
+					};
+					// console.log(window.sessionStorage['currentItemCustomSettingsData']);
+					// if content layout settings has custom data, send to the content layout comp
+					if (window.sessionStorage['currentItemCustomSettingsData']) {
+						getPropertyData.eventPayload.propertyValue = JSON.parse(window.sessionStorage['currentItemCustomSettingsData']);
+					}
+
+					// send back the property
+					console.log('Sites responded with GET event: ' + JSON.stringify(getPropertyData));
+					event.source.postMessage(JSON.stringify(getPropertyData), '*');
+				}
+
+				// Mock the setProperty Event
+				if (data && data.eventName === setPropertyEvent) {
+					console.log('Sites received SET event: ' + event.data);
+
+					// store the data
+					properties[data.eventPayload.propertyName] = data.eventPayload.propertyValue;
+
+					// handle callback noting that settings have changed
+					if (typeof subscriptions[MESSAGE_TYPES.SETTINGS_UPDATED] === 'function') {
+						console.log('Sites responded with: settings_updated callback');
+						subscriptions[MESSAGE_TYPES.SETTINGS_UPDATED]({
+							property: data.eventPayload.propertyName,
+							value: data.eventPayload.propertyValue
+						});
+					} else {
+						var containers = document.getElementsByClassName('scs-component-container'),
+							container = containers && containers.length > 0 ? containers[0] : undefined,
+							id = containers && containers.length > 0 ? containers[0].getAttribute('id') : '',
+							iframewapper = document.getElementsByClassName('scs-app-iframe-wrapper'),
+							isApp = iframewapper && iframewapper.length > 0,
+							iframes = document.getElementsByTagName('iframe'),
+							iframe = iframes && iframes.length > 1 ? iframes[1] : undefined,
+							iframewindow = iframe ? iframe.contentWindow || iframe.contentDocument.defaultView :
+							undefined;
+						console.log('isApp=' + isApp + ' id=' + id + ' iframewindow=' + iframewindow);
+						if (isApp && iframewindow) {
+							var settingsData = JSON.stringify({
+								destination: 'app',
+								method: 'execute',
+								parameters: {
+									type: 'SETTINGS_UPDATED',
+									id: id.replace('iframe-', ''),
+									data: {
+										property: data.eventPayload.propertyName,
+										value: data.eventPayload.propertyValue || ''
+									}
+								}
+							});
+							console.log('posting message(app): ' + settingsData);
+							// posting to component
+							iframewindow.postMessage(settingsData, '*');
+						} else if (!isApp && id) {
+							var comp = SCSRenderAPI.getComponentLogic(id),
+								viewModel = comp && comp.viewModel,
+								compname = comp && comp.params && comp.params.componentName,
+								sectionLayoutImpl = comp && comp.sectionLayoutImpl;
+
+							if (compname && compname === 'devcsCaaSLayout') {
+
+								var selectItem = data.eventPayload.propertyValue['selectItem'],
+									data = comp.params.data;
+
+								if (selectItem) {
+									while (container.hasChildNodes()) {
+										container.removeChild(container.lastChild);
+									}
+
+									data.contentId = selectItem.id;
+									data.componentName = selectItem.name;
+									data.contentTypes = [selectItem.type];
+									data.description = selectItem.name + ' : Default';
+									data.contentIds = [selectItem.id]
+
+									if (window.sessionStorage['currentItemCustomSettingsData']) {
+										data.customSettingsData = JSON.parse(window.sessionStorage['currentItemCustomSettingsData']);
+									}
+
+									comp.render(container);
+									console.log('content layout settings change: {' + JSON.stringify(selectItem) +
+										'}');
+								} else {
+									while (container.hasChildNodes()) {
+										container.removeChild(container.lastChild);
+									}
+									
+									var eventdata = JSON.parse(event.data);
+									// console.log(eventdata.eventPayload);
+									// save the custom settings
+									if (eventdata.eventPayload.propertyName === 'customSettingsData' &&
+										eventdata.eventPayload.propertyValue.hasOwnProperty('customData')) {
+											var settingsData = eventdata.eventPayload.propertyValue;
+											window.sessionStorage.setItem('currentItemCustomSettingsData', JSON.stringify(settingsData));
+											data.customSettingsData = settingsData;
+									} else if (window.sessionStorage['currentItemCustomSettingsData']) {
+										data.customSettingsData = JSON.parse(window.sessionStorage['currentItemCustomSettingsData']);
+									}
+								
+									comp.render(container);
+									console.log('content layout settings change, rerender current selection');
+								}
+
+							} else if (sectionLayoutImpl) {
+								var newCustomSettings = data.eventPayload.propertyValue;
+								if (sectionLayoutImpl.logic && sectionLayoutImpl.logic.sectionLayoutData) {
+									while (container.hasChildNodes()) {
+										container.removeChild(container.lastChild);
+									}
+									sectionLayoutImpl.logic.sectionLayoutData.customSettingsData =
+										newCustomSettings;
+									comp.render(container);
+									console.log('section layout settings change: {' + data.eventPayload.propertyName +
+										', ' + JSON.stringify(data.eventPayload.propertyValue) + '}');
+								}
+
+							} else if (viewModel) {
+								viewModel.publishPropertyChange(
+									data.eventPayload.propertyName,
+									data.eventPayload.propertyValue);
+								console.log('component settings change: {' + data.eventPayload.propertyName + ', ' +
+									JSON.stringify(data.eventPayload.propertyValue) + '}');
+							} else {
+								console.log('Sites responded with: no callback - unable to get component viewModel');
+							}
+						} else {
+							console.log('Sites responded with: no callback');
+						}
+					}
+				}
+			} catch (e) {
+				// console.log('Sites ignored event: ' + e);
+				// console.log(event);
+				return true;
+			}
+			}
+		};
+		window.addEventListener("message", receiveMessage, false);
+
+		_devcs_component_click_settings_func
+
+		var selectTemplate = function () {
+			// redirect to the selected theme
+			var template = document.getElementById("localtemplate").value;
+			console.log('select template: ' + template);
+
+			var newURL = window.location.href.replace(/\?.*/, '');
+			window.location.href = newURL + (template === 'none' ? '' : '?template=' + template);
+		};
+		var selectThemeResource = function () {
+			// redirect to the selected theme
+			var theme = document.getElementById("themeresource").value;
+			var tempName = document.getElementById("localcontent").value;
+			console.log('select theme: ' + theme + ' current content: ' + tempName);
+
+			var newURL = window.location.href.replace(/\?.*/, '');
+			var sep = theme === 'none' ? '?' : '&';
+			newURL = newURL + (theme === 'none' ? '' : '?theme=' + theme);
+			if (tempName && tempName !== 'none') {
+				newURL += sep + 'content=' + tempName;
+			}
+			window.location.href = newURL;
+		};
+		var selectTheme = function () {
+			var theme = document.getElementById("themedesign").value;
+			console.log('select theme: ' + theme);
+			if (theme) {
+				var cssfile = '/src/themes/' + theme + '/designs/default/design.css';
+				var head = document.getElementsByTagName('head')[0],
+					link = document.createElement('link');
+				if (head) {
+					var childnodes = head.childNodes;
+
+					for (var i = childnodes.length - 1; i >= 0; i--) {
+						var attrs = childnodes[i].attributes;
+						if (attrs) {
+							var rel, type, href;
+							for (var j = 0; j < attrs.length; j++) {
+								if (attrs[j].name === 'rel') {
+									rel = attrs[j].value;
+								}
+								if (attrs[j].name === 'type') {
+									type = attrs[j].value;
+								}
+								if (attrs[j].name === 'href') {
+									href = attrs[j].value;
+								}
+							}
+							// console.log('rel=' + rel + ' type=' + type + ' href=' + href);
+							if (rel === 'stylesheet' && type === 'text/css' && href && href.indexOf(
+									'/src/themes/') === 0) {
+								head.removeChild(childnodes[i]);
+								console.log(' removed style: ' + href);
+							}
+						}
+					}
+					if (theme !== 'none') {
+						// add the newly selected
+						link.setAttribute('rel', 'stylesheet');
+						link.setAttribute('type', 'text/css');
+						link.setAttribute('href', cssfile);
+						head.appendChild(link);
+						console.log(' added style: ' + cssfile);
+					}
+				}
+			}
+		};
+		var selectLocalContent = function () {
+			var tempName = document.getElementById("localcontent").value;
+			var theme = document.getElementById("themeresource").value;
+			console.log('select content template: ' + tempName + ' current theme: ' + theme);
+			var newURL = window.location.href.replace(/\?.*/, '');
+			var sep = tempName === 'none' ? '?' : '&';
+			newURL = newURL + (tempName === 'none' ? '' : '?content=' + tempName);
+			if (theme && theme !== 'none') {
+				newURL += sep + 'theme=' + theme;
+			}
+			window.location.href = newURL;
+			
+		};
+		var selectServerContent = function () {
+			var channelToken = document.getElementById("servercontent").value;
+			console.log('select channel token: ' + channelToken);
+			var newURL = window.location.href.replace(/\?.*/, '');
+			window.location.href = newURL + (channelToken === 'none' ? '' : '?token=' + channelToken);
+			
+		};
+
+		//
+		// setting pane setup
+		//
+		var settingsPaneStatus = window.sessionStorage['settingsPaneStatus'];
+		// console.log('settingsPaneStatus: ' + settingsPaneStatus);
+
+		var toggleSettingsButton = document.getElementById("toggleSettings");
+		var settingsPane = document.getElementById("settingsMain");
+		if (settingsPaneStatus === 'close') {
+			settingsPane.style.display = "none";
+			toggleSettingsButton.value = ">";
+			toggleSettingsButton.innerHTML = ">";
+			toggleSettingsButton.alt = "Expand Settings pane";
+			toggleSettingsButton.title = "Expand Settings pane";
+		} else {
+			settingsPane.style.display = "block";
+			toggleSettingsButton.value = "<";
+			toggleSettingsButton.innerHTML = "<";
+			toggleSettingsButton.alt = "Collapse Settings pane";
+			toggleSettingsButton.title = "Collapse Settings pane";
+		}
+		
+		var showHideSettings = function (event) {
+			// console.log('click show/hide settings...');
+			var x = document.getElementById("settingsMain");
+			var button = document.getElementById("toggleSettings");
+  			if (x.style.display === "none") {
+				x.style.display = "block";
+				button.value = "<";
+				button.innerHTML = "<";
+				button.alt = "Collapse Settings pane";
+				button.title = "Collapse Settings pane";
+				window.sessionStorage.setItem("settingsPaneStatus", "open");
+  			} else {
+				x.style.display = "none";
+				button.value = ">";
+				button.innerHTML = ">";
+				button.alt = "Expand Settings pane";
+				button.title = "Expand Settings pane";
+				window.sessionStorage.setItem("settingsPaneStatus", "close");
+  			}
+		};
+
+	</script>
+	<script data-main="/_sitescloud/renderer/renderer.js" src="/libs/requirejs/require.js"></script>
+	<!--$SCS_PAGE_FOOTER-->
+	<!--$SCS_SITE_FOOTER-->
+	<!-- Avoid FOUC issue in FF with async loading of style sheets -->
+	<style>
+		body {
+			opacity: 1;
+		}
+	</style>
+</body>
+
+</html>

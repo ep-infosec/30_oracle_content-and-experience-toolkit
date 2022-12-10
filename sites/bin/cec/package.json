@@ -1,0 +1,18 @@
+{
+  "name": "cec",
+  "version": "22.12.1",
+  "description": "CLI for cec",
+  "license": "UPL-1.0",
+  "main": "cec.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "cec": "cec.js",
+    "cec-compile-site": "cecCompileSite.sh"
+  },
+  "dependencies": {
+    "yargs": "13.2.4"
+  },
+  "author": "Oracle"
+}

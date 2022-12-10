@@ -1,0 +1,19 @@
+<!-- {{#copyright}}
+ * Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+ * Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
+{{/copyright}}-->
+<{{componentWrapperTag}} {{{nestedId}}} {{{componentTagAttribute}}}>
+	<div class="{{computedStyleClass}}" style="{{computedWrapperStyle}}">
+		<div class="scs-component-content" style="{{computedContentStyle}}">
+			<div class="scs-image-container" style="{{computedStyle}}">
+				{{#linkHandler}}
+				<a {{{hrefAttr}}} class="{{computedLinkClass}}" target="{{computedTarget}}" {{{ariaLabelValue}}} {{{downloadFileName}}} {{{dataAnalyticsClick}}}>
+				{{/linkHandler}}
+					<img id="{{imageId}}" src="{{computedImageUrl}}" alt="{{altText}}" title="{{title}}" class="{{computedImgClass}}" {{{dataAnalyticsView}}}/>
+				{{#linkHandler}}
+				</a>
+				{{/linkHandler}}
+			</div>
+		</div>
+	</div>
+</{{componentWrapperTag}}>
